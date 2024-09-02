@@ -117,5 +117,5 @@ goto end
 :: if exist "%SAVEDIR%\current.txt" del "%SAVEDIR%\current.txt" > NUL
 if exist "%SAVEDIR%\latest.txt" del "%SAVEDIR%\latest.txt" > NUL
 echo %target_version%>"%SAVEDIR%\current.txt"
-move "%SAVEDIR%\urls.txt" "%SAVEDIR%\%target_version%" > NUL
+if exist "%SAVEDIR%\urls.txt" move "%SAVEDIR%\urls.txt" "%SAVEDIR%\%target_version%" > NUL
 pause
