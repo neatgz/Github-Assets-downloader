@@ -16,8 +16,8 @@ set URL_LIST="%SAVEDIR%\urls.txt"
 
 mode con cols=100 lines=30
 color 0b
-title Github Release Assets downloader v1.0
-echo Github Release Assets downloader v1.0
+title Github Release Assets downloader v1.2
+echo Github Release Assets downloader v1.2
 echo ===============================================================================
 echo Please read and config the config.txt file Before continue!
 echo ===============================================================================
@@ -29,7 +29,7 @@ set lineNumber=0
 for /f "usebackq delims=" %%a in ("config.txt") do (
     set /a lineNumber+=1
     if !lineNumber! equ 2 (
-        if "%%a"=="null" (
+        if "%%a"=="0" (
             set proxy_parameter_aria2=
 			echo You choose NOT to use proxy when downloading
         ) else (
@@ -49,7 +49,7 @@ set lineNumber=0
 for /f "usebackq delims=" %%a in ("config.txt") do (
     set /a lineNumber+=1
     if !lineNumber! equ 4 (
-        if "%%a"=="null" (
+        if "%%a"=="0" (
 			echo You did NOT fill in the repository name, exiting
 			pause
 			exit
@@ -117,4 +117,5 @@ goto end
 :: if exist "%SAVEDIR%\current.txt" del "%SAVEDIR%\current.txt" > NUL
 if exist "%SAVEDIR%\latest.txt" del "%SAVEDIR%\latest.txt" > NUL
 echo %target_version%>"%SAVEDIR%\current.txt"
+move "%SAVEDIR%\urls.txt" "%SAVEDIR%\%target_version%" > NUL
 pause
