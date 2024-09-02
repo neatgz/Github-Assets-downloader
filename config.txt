@@ -1,19 +1,23 @@
 # Proxy setting
-null
+0
 # Repository name
-zhongyang219/TrafficMonitor
+0
 # Version (github release tag)
 latest
-# ˵�� Readme:
-1���������ã�����������д�ڱ��ļ��ĵ�2�У��������ա�
-��ʹ�ô�������д��null
-ʹ�� http �����밴ʾ����д��http://127.0.0.1:7897
-2��Repository ���ƣ�����������д�ڱ��ļ��ĵ�4�У��������ա�
-ʾ�� 
+
+
+# 说明 Readme:
+
+1、代理设置：必填，请务必填写在本文件的第2行，不可留空。
+不使用代理请填写：0
+使用 http 代理请按示例填写：http://127.0.0.1:7897
+2、Repository 名称：必填，请务必填写在本文件的第4行，不可留空。
+示例 
+aria2/aria2
 v2fly/v2ray-core
 clash-verge-rev/clash-verge-rev
 zhongyang219/TrafficMonitor
-3���汾������������д�ڱ��ļ��ĵ�6�У��������ա�
-���°汾����д��latest
-ָ���汾����д��github release �İ汾 tag���� v1.1.2
-4��Utils\x64 �ļ����£�Ϊ 64λ �����������Ҫ�������滻���ɡ�
+3、版本：必填，请务必填写在本文件的第6行，不可留空。
+最新版本请填写：latest
+指定版本请填写：github release 的版本 tag，如 v1.1.2
+4、Utils\x64 文件夹下，为 64位 的组件。有需要的自行替换到 Utils 文件夹下即可。
