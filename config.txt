@@ -1,0 +1,19 @@
+# Proxy setting
+null
+# Repository name
+zhongyang219/TrafficMonitor
+# Version (github release tag)
+latest
+# 说明 Readme:
+1、代理设置：必填，请务必填写在本文件的第2行，不可留空。
+不使用代理请填写：null
+使用 http 代理请按示例填写：http://127.0.0.1:7897
+2、Repository 名称：必填，请务必填写在本文件的第4行，不可留空。
+示例 
+v2fly/v2ray-core
+clash-verge-rev/clash-verge-rev
+zhongyang219/TrafficMonitor
+3、版本：必填，请务必填写在本文件的第6行，不可留空。
+最新版本请填写：latest
+指定版本请填写：github release 的版本 tag，如 v1.1.2
+4、Utils\x64 文件夹下，为 64位 的组件。有需要的自行替换即可。
