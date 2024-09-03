@@ -5,7 +5,7 @@ cd /d %~dp0
 
 set SAVEDIR=%~dp0Downloads
 if not exist %SAVEDIR% (
-	md %SAVEDIR%
+    md %SAVEDIR%
 )
 
 :: set BUSYBOX="%~dp0Utils\busybox.exe"
@@ -16,8 +16,8 @@ set URL_LIST="%SAVEDIR%\urls.txt"
 
 mode con cols=100 lines=30
 color 0b
-title Github Release Assets downloader v1.2
-echo Github Release Assets downloader v1.2
+title Github Release Assets downloader v1.4
+echo Github Release Assets downloader v1.4
 echo ===============================================================================
 echo Please read and config the config.txt file Before continue!
 echo ===============================================================================
@@ -31,11 +31,11 @@ for /f "usebackq delims=" %%a in ("config.txt") do (
     if !lineNumber! equ 2 (
         if "%%a"=="0" (
             set proxy_parameter_aria2=
-			echo You choose NOT to use proxy when downloading
+            echo You choose NOT to use proxy when downloading
         ) else (
             set proxy_address=%%a
-			set proxy_parameter_aria2=--all-proxy="!proxy_address!"
-			echo You choose to USE proxy !proxy_address! when downloading
+            set proxy_parameter_aria2=--all-proxy="!proxy_address!"
+            echo You choose to USE proxy !proxy_address! when downloading
         )
     )
 )
@@ -89,20 +89,27 @@ set target_version=%latest_version%
 :: pause
 
 :target_or_current
-if exist "%SAVEDIR%\current.txt" set /P current_version=<%SAVEDIR%\current.txt > NUL
-:: echo Current version %current_version%
-:: pause
-if "%current_version%" == "%target_version%" (
-  echo You have Already downloaded this version last time: %current_version%, exiting
+if exist "%SAVEDIR%\%target_version%" (
+    echo You have Already downloaded %target_version% previously, exiting
     goto end
-) else echo Target version: %target_version%
+) else (
+    echo Target version: %target_version%
+)
 pause
 
-:: :process1
+:: :target_or_current
+:: if exist "%SAVEDIR%\current.txt" set /P current_version=<%SAVEDIR%\current.txt > NUL
+:: echo Current version %current_version%
+:: pause
+:: if "%current_version%" == "%target_version%" (
+::   echo You have Already downloaded this version last time: %current_version%, exiting
+::     goto end
+:: ) else echo Target version: %target_version%
+:: pause
 
+:: :process1
 :: 	%CURL_PATH% -s https://api.github.com/repos/%REPO_address%/releases/latest | %JQ_PATH% -r ".assets[].browser_download_url" > %URL_LIST%
 :: 	%ARIA2C_PATH% %proxy_parameter_aria2% -c -s 16 -x 16 -k 1M -d %SAVEDIR%\%target_version% -i %URL_LIST%
-
 :: goto end
 
 :process
@@ -118,4 +125,5 @@ goto end
 if exist "%SAVEDIR%\latest.txt" del "%SAVEDIR%\latest.txt" > NUL
 echo %target_version%>"%SAVEDIR%\current.txt"
 if exist "%SAVEDIR%\urls.txt" move "%SAVEDIR%\urls.txt" "%SAVEDIR%\%target_version%" > NUL
+echo The files was in %SAVEDIR%\%target_version%
 pause
